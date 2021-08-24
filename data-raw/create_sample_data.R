@@ -1,0 +1,23 @@
+set.seed(1234)
+sample_data_df = data.frame(matrix(sample(0:10, 1500, replace = TRUE), nrow = 30, ncol = 50))
+
+sample_data = create_object(sample_data_df,  normalized = FALSE)
+sample_data = normalize(sample_data, gene_cri = 0, cell_cri = 0, scale_factor = 10000)
+sample_data = filter_data(sample_data, gene_cri = 0, cell_cri = 0, use_normalized_data = TRUE)
+sample_data = data_nmf(sample_data, use_normalized_data = TRUE, thread = 1)
+sample_data = feature_selection_knn(sample_data,feature = c('1','2'), k = 5)
+sample_data = tsneplot(sample_data, use_normalized_data = TRUE, perplexity = 5)
+sample_data = contour_plot(sample_data)
+sample_data <- distribution_estimation(sample_data, ndraw = 50, expansion = 1.5, ... = 1,2,3)
+sample_data  <- point_possibility(sample_data , r = 2)
+sample_data <- connect_cluster(sample_data)
+sample_data <- infer_trajectory(sample_data, iter_n = 50)
+sample_data <- calculate_pseudotime(sample_data, start_state_name = c('1','2'))
+sample_data <- plot_trajectory(sample_data)
+plot(sample_data@trajectory_plot$plot)
+
+select_cor_feature(sample_data, c('1','2'), use_normalized_data = FALSE, k = 5)
+select_var_feature(sample_data, use_normalized_data = FALSE, n = 10)
+
+usethis::use_data(sample_data_df, compress = 'xz')
+usethis::use_data(sample_data, compress = 'xz', overwrite = TRUE)
