@@ -12,6 +12,42 @@ single-cell RNA-seq data. dbcti is designed to be able to infer any
 topological patterns of cell differentiation path and is robust to
 noises in single-cell RNA-seq data.
 
+## System requirements
+
+### Hardware Requirements
+
+`dbcti` package is able to perform its operations on a standard
+computer.
+
+### OS Requirements
+
+The `dbcti` package should be compatible with Windows, Mac, and Linux
+operating systems. The package has been tested on the following systems:
+
+  - Linux 3.10.0
+  - Windows 10
+
+### R Dependencies
+
+`dbcti` depends on the following r package
+
+``` r
+Rtsne,
+FNN,
+NMF,
+MASS,
+mclust,
+princurve,
+stringr,
+igraph,
+colorRamps,
+rrcov,
+grDevices,
+methods
+prada,
+ggplot2
+```
+
 ## Installation
 
 The package dbcti is able to be installed from GitHub:
@@ -20,6 +56,9 @@ The package dbcti is able to be installed from GitHub:
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('tianlt/dbcti')
 ```
+
+The package should take approximately 1 minute to install on a
+recommended computer.
 
 ## Example
 
@@ -71,6 +110,9 @@ plot(sample_data@trajectory_plot$plot)
 ```
 
 <img src="man/figures/README-unnamed-chunk-2-1.png" width="100%" />
+
+The demo should take approximately 1 minute to finish running on a
+standard computer.
 
 ## Issues and bug reports
 
