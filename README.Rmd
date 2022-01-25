@@ -64,50 +64,53 @@ This is a basic example of using DBCTI:
 
 
 
-```{r example, message=FALSE, eval=FALSE}
+```{r example, message=FALSE}
 library(dbcti)
 
-#### Load data and create cell_trajectory project
-sample_data <- create_object(sample_data_df,  normalized = FALSE)
+sample_data <- as.data.frame(sample_data)
 
-#### Normalize data
-sample_data <- normalize(sample_data, gene_cri = 0, cell_cri = 0, scale_factor = 10000)
+#### Load data and create cell_trajectory project
+sample_dbcti <- create_object(sample_data, normalized = TRUE) 
+
+#### Filter data
+sample_dbcti <- filter_data(sample_dbcti, gene_cri = 1, cell_cri = 1, use_normalized_data = TRUE) 
 
 
 #### Feature selection
-sample_data <- select_var_feature(sample_data, use_normalized_data = FALSE, n = 10)
+sample_dbcti <- select_var_feature(sample_dbcti, use_normalized_data = TRUE, n = 50)
 
 #### Build tsne plot
-sample_data <- tsneplot(sample_data, use_normalized_data = TRUE, perplexity = 5)
+sample_dbcti <- tsneplot(sample_dbcti, use_normalized_data = TRUE, specified_gene = FALSE, pca = TRUE, perplexity = 10)
 
 #Build contour plot
-sample_data <- contour_plot(sample_data)
+sample_dbcti <- contour_plot(sample_dbcti)
 
 #Estimate distribution
-sample_data <- distribution_estimation(sample_data, ndraw = 50, expansion = 1.5, ... = 1,2,3)
+sample_dbcti <- distribution_estimation(sample_dbcti, ndraw = 100, expansion = 1.5, ... = 1,2,3) 
 
 #Calculate possibility for points
-sample_data <- point_possibility(sample_data , r = 2)
+sample_dbcti <- point_possibility(sample_dbcti, r = 5)
 
 #Connect cluster
-sample_data <- connect_cluster(sample_data)
+sample_dbcti <- connect_cluster(sample_dbcti)
 
 #Infer_trajectory
-sample_data <- infer_trajectory(sample_data, iter_n = 50)
+sample_dbcti <- infer_trajectory(sample_dbcti, iter_n =15)
 
 #Calculate pseudotime
-sample_data <- calculate_pseudotime(sample_data, start_state_name = c('1','2'))
+sample_dbcti <- calculate_pseudotime(sample_dbcti, start_state_name = c('1','2'))
 
 #Build trajectory plot
-sample_data <- plot_trajectory(sample_data)
+sample_dbcti <- plot_trajectory(sample_dbcti)
+
+#Finally let's plot the trajectory
+plot(sample_dbcti@trajectory_plot$plot)
+
+#session info is also attached;
+sessionInfo()
 ```
 
-Finally let's plot the trajectory
 
-```{r, message=FALSE, warning=FALSE}
-library(dbcti)
-plot(sample_data@trajectory_plot$plot)
-```
 
 The demo should take approximately 1 minute to finish running on a standard computer.
 
