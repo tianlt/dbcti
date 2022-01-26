@@ -9,7 +9,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "50%"
 )
 ```
 
@@ -57,6 +57,15 @@ if (!require('devtools')) install.packages('devtools')
 devtools::install_github('tianlt/dbcti')
 ```
 The package should take approximately 1 minute to install on a recommended computer.
+
+If unsuccessful installation of the denpendency package `prada`, please install separately from Bioconductor:
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("prada")
+```
+
 
 ## Example
 
@@ -112,7 +121,7 @@ sessionInfo()
 
 
 
-The demo should take approximately 1 minute to finish running on a standard computer.
+The demo should take approximately 30 seconds to finish running on a standard computer.
 
 ## Issues and bug reports
 Please use <https://github.com/tianlt/dbcti/issues> to submit issues, bug reports, and comments.

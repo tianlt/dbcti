@@ -60,6 +60,16 @@ devtools::install_github('tianlt/dbcti')
 The package should take approximately 1 minute to install on a
 recommended computer.
 
+If unsuccessful installation of the denpendency package `prada`, please
+install separately from Bioconductor:
+
+``` r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("prada")
+```
+
 ## Example
 
 This is a basic example of using DBCTI:
@@ -86,7 +96,7 @@ sample_dbcti <- select_var_feature(sample_dbcti, use_normalized_data = TRUE, n =
 sample_dbcti <- tsneplot(sample_dbcti, use_normalized_data = TRUE, specified_gene = FALSE, pca = TRUE, perplexity = 10)
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example-1.png" width="50%" />
 
 ``` r
 
@@ -94,7 +104,7 @@ sample_dbcti <- tsneplot(sample_dbcti, use_normalized_data = TRUE, specified_gen
 sample_dbcti <- contour_plot(sample_dbcti)
 ```
 
-<img src="man/figures/README-example-2.png" width="100%" />
+<img src="man/figures/README-example-2.png" width="50%" />
 
 ``` r
 
@@ -129,7 +139,7 @@ sample_dbcti <- plot_trajectory(sample_dbcti)
 plot(sample_dbcti@trajectory_plot$plot)
 ```
 
-<img src="man/figures/README-example-3.png" width="100%" />
+<img src="man/figures/README-example-3.png" width="50%" />
 
 ``` r
 
@@ -176,7 +186,7 @@ sessionInfo()
 #> [61] cluster_2.1.0     knitr_1.28
 ```
 
-The demo should take approximately 1 minute to finish running on a
+The demo should take approximately 30 seconds to finish running on a
 standard computer.
 
 ## Issues and bug reports
