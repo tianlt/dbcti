@@ -198,3 +198,9 @@ bug reports, and comments.
 
 DBCTI is distributed under the [GNU General Public License version 2
 (GPLv2)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html).
+
+## Citation
+
+If DBCTI has assisted you with your work, please kindly cite our paper:
+
+Tian Lan, Gyorgy Hutvagner, Xuan Zhang, Tao Liu, Limsoon Wong, Jinyan Li, Density-based detection of cell transition states to construct disparate and bifurcating trajectories, Nucleic Acids Research, Volume 50, Issue 21, 28 November 2022, Page e122, https://doi.org/10.1093/nar/gkac785
